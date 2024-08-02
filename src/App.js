@@ -7,9 +7,9 @@ import { CreateTodoButton } from './createTodoButton';
 
 const defaultTodos = [
   {text : 'cortar cebolla' , completed : true},
-  {text : 'Tomar Curso de React Js' , completed : true},
-  {text : 'Llorar con la Llorona' , completed : true},
-  {text : 'Lalalala' , completed : true},
+  {text : 'Tomar Curso de React Js' , completed : false},
+  {text : 'Llorar con la Llorona' , completed : false},
+  {text : 'Lalalala' , completed : false},
 ]
 
 function App() { 
@@ -32,7 +32,7 @@ function App() {
       {/* la consola devolverá error si no ponemos la key */}
       <TodoList>
         {defaultTodos.map( todo => (
-          <TodoItem key={todo.text} text={todo.text}/>
+          <TodoItem key={todo.text} text={todo.text} completed={todo.completed}/>
         ))}
       </TodoList>
 
