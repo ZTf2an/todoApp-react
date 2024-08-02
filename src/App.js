@@ -16,7 +16,7 @@ const defaultTodos = [
 
 function App() { 
   // React para renderisarse solo debemos pasarle un elemento. por eso encapsulamos todo en el div .classname
-  // si quisieramos que se renderisara todo sin estar dentro de un div, lo que debemos hacer es poner todo dentro de las etiquetas <React.Fragment></React.Fragment>
+  // si quisieramos que se renderisara todo sin estar dentro de un div, lo que debemos hacer es poner todo dentro de las etiquetas <React.Fragment></React.Fragment>, para esto deberíamos importar react
   // tambien sirve unicamente <></>
   return (
     <div className="App">
