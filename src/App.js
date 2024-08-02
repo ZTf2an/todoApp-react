@@ -3,9 +3,7 @@ import { TodoSearch } from './todoSearch';
 import { TodoList } from './todoList';
 import { TodoItem } from './todoItem';
 import { CreateTodoButton } from './createTodoButton';
-// import { CreateTodoButton } from './createTodoButton';
 // import logo from './platzi.webp';
-import './App.css';
 
 const defaultTodos = [
   {text : 'cortar cebolla' , completed : true},
