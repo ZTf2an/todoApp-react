@@ -22,6 +22,11 @@ function App() {
   const totalCompletedTodos = completedTodos.length;
   const totalTodos = todos.length
 
+  const searchedTodos = todos.filter(
+    todo => todo.text.toLowerCase()
+      .includes(searchValue.toLowerCase())
+  )
+
   // React para renderisarse solo debemos pasarle un elemento. por eso encapsulamos todo en el div .classname
   // si quisieramos que se renderisara todo sin estar dentro de un div, lo que debemos hacer es poner todo dentro de las etiquetas <React.Fragment></React.Fragment>, para esto deberíamos importar react
   // tambien sirve unicamente <></>
@@ -40,7 +45,7 @@ function App() {
       {/* Una mejor forma de hacerlo es como se hace a continuacion */}
       {/* la consola devolverá error si no ponemos la key */}
       <TodoList>
-        {defaultTodos.map( todo => (
+        {searchedTodos.map( todo => (
           <TodoItem key={todo.text} text={todo.text} completed={todo.completed}/>
         ))}
       </TodoList>
