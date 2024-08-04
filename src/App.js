@@ -45,13 +45,14 @@ function App() {
     setTodos(newTodos)
   };
 
+
   // React para renderisarse solo debemos pasarle un elemento. por eso encapsulamos todo en el div .classname
   // si quisieramos que se renderisara todo sin estar dentro de un div, lo que debemos hacer es poner todo dentro de las etiquetas <React.Fragment></React.Fragment>, para esto deberíamos importar react
   // tambien sirve unicamente <></>
   return (
     <div className="App">
       {/* esta es la manera de isertar el componente al JSX */}
-      <TodoCounter completed={totalCompletedTodos} total={totalTodos} />
+      <TodoCounter completed={totalCompletedTodos} total={totalTodos}/>
       < TodoSearch searchValue={searchValue} setSearchValue={setSearchValue}/>
 
       {/* <TodoList>

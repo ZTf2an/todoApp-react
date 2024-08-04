@@ -4,3 +4,9 @@ h1 {
     margin: 0;
     padding: 48px;
 }
+.inactive {
+    display: none;
+}
+.active {
+    display: block;
+}
