@@ -4,7 +4,7 @@ function TodoCounter ({ total , completed}) {
     return (
       <h1>
         Has completado {completed} de {total} ToDo
-        <div className={`${!(total == completed) && "inactive"}`}>
+        <div className={`${!(total === completed) && "inactive"}`}>
           Felicitaciones, has completado todas las tareas
         </div>
       </h1>
