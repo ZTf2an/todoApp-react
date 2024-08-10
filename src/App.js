@@ -4,33 +4,56 @@ import { TodoSearch } from './todoSearch';
 import { TodoList } from './todoList';
 import { TodoItem } from './todoItem';
 import { CreateTodoButton } from './createTodoButton';
-// import logo from './platzi.webp';
 
-// const defaultTodos = [
-//   {text : 'cortar cebolla' , completed : false},
-//   {text : 'Tomar Curso de React Js' , completed : false},
-//   {text : 'Llorar con la Llorona' , completed : false},
-//   {text : 'Lalalala' , completed : false},
-// ]
+/* bloque de actualizacion de localStorage en consola
+const defaultTodos = [
+  {text : 'cortar cebolla' , completed : false},
+  {text : 'Tomar Curso de React Js' , completed : false},
+  {text : 'Llorar con la Llorona' , completed : false},
+  {text : 'Lalalala' , completed : false},
+]
 
-// let stringied = JSON.stringify(defaultTodos); 
-// localStorage.setItem('TODOS_V1', stringied);
+let stringied = JSON.stringify(defaultTodos); 
+localStorage.setItem('TODOS_V1', stringied);
 
-// localStorage.removeItem('TODOS_V1')
+localStorage.removeItem('TODOS_V1')
+*/
 
-function App() { 
-  const localStorageTodos = localStorage.getItem('TODOS_V1'); 
+// se generó el custom hook useLocalStorage, para alacenar en el toda la logica que se desarrolla utilizando el local Storage que estaba sobre cargando de informacion nuestro componente App()
+function useLocalStorage ( itemName , initialValue ) {
+  //se trae esta linea la cual pasabe en el .getItem el valor 'TODOS_V1', ahora este valor se le enviará directamente con itemName
+  const localStorageItem = localStorage.getItem(itemName); 
+
+  //se declara la variable vacia para actualizarla según lo que se envie en initial value. ver linea 31
+  let parsedItem;
   
-  let parsedTodos = []
-
-  if (!localStorageTodos) {
-    localStorage.setItem('TODOS_V1' , JSON.stringify([]))
-    parsedTodos = []
+  if (!localStorageItem) {
+    localStorage.setItem(itemName , JSON.stringify([initialValue]))
+    parsedItem = initialValue;
   } else {
-    parsedTodos = JSON.parse(localStorageTodos)
+    parsedItem = JSON.parse(localStorageItem)
   }
 
-  const [todos , setTodos] = React.useState(parsedTodos);
+  // se trae esta linea que es la que actualizará el estado de los TODOS,
+  const [item , setItem] = React.useState(parsedItem);
+
+  //se trae esta función que es la encargada de actualizar el estado y de actualizar la informacion que se envia al Local Storage
+  const saveItem = (newTodos) => {
+    localStorage.setItem(itemName , JSON.stringify(newTodos));
+  
+    setItem(newTodos);
+  }
+
+  // por ultimo se retorna el un array con el estado, y la funcion que actualiza el estado 
+  return [item , saveItem]
+}
+
+function App() { 
+
+  // de esta manera se extrae toda la informacion de useLocalStorage, destructurando el array extrayendo el estado y la funcion que actualiza el estado.
+  // al ser un array no es necesario que tenga el mismo nombre que está en el return de la funcion useLocalStorage, linea 47  
+  const [todos , saveTodos] = useLocalStorage('TODOS_V1' , [])
+
   const [searchValue , setSearchValue] = React.useState('');
   // console.log(`los usuarios buscan todos de ${searchValue}`);
 
@@ -43,11 +66,6 @@ function App() {
       .includes(searchValue.toLowerCase())
   )
 
-  const saveTodos = (newTodos) => {
-    localStorage.setItem('TODOS_V1' , JSON.stringify(newTodos));
-
-    setTodos(newTodos);
-  }
 
   const completeTodos = (text) => {
     const newTodos = [...todos];
@@ -68,23 +86,11 @@ function App() {
   };
 
 
-  // React para renderisarse solo debemos pasarle un elemento. por eso encapsulamos todo en el div .classname
-  // si quisieramos que se renderisara todo sin estar dentro de un div, lo que debemos hacer es poner todo dentro de las etiquetas <React.Fragment></React.Fragment>, para esto deberíamos importar react
-  // tambien sirve unicamente <></>
   return (
     <div className="App">
-      {/* esta es la manera de isertar el componente al JSX */}
       <TodoCounter completed={totalCompletedTodos} total={totalTodos}/>
       < TodoSearch searchValue={searchValue} setSearchValue={setSearchValue}/>
 
-      {/* <TodoList>
-        <TodoItem />
-        <TodoItem />
-        <TodoItem />
-      </TodoList> */}
-
-      {/* Una mejor forma de hacerlo es como se hace a continuacion */}
-      {/* la consola devolverá error si no ponemos la key */}
       <TodoList>
         {searchedTodos.map( todo => (
           <TodoItem 
