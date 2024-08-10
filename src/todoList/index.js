@@ -1,4 +1,4 @@
-import './styles/todolist.css'
+import './todolist.css'
 function TodoList ( 
     // props    de esta manera al llamar a childre deberíamos hacer props.children. por eso es preferible usar la siguiente
     { children } 

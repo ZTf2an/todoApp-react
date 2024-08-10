@@ -1,4 +1,4 @@
-import './styles/todoSearch.css'
+import './todoSearch.css'
 
 function TodoSearch ({searchValue , setSearchValue}) {
     return (

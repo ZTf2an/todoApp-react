@@ -1,4 +1,4 @@
-import './styles/TodoCounter.css'
+import './TodoCounter.css'
 // las props "recibidas como parametro" deben ser como objeto, de la siguiente manera
 function TodoCounter ({ total , completed}) {
     return (
