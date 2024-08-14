@@ -1,6 +1,7 @@
 import React from 'react'
 import { AppUi } from './AppUi'
-import { useLocalStorage } from './useLocalStorage';
+// import { useLocalStorage } from './useLocalStorage';
+import { TodoProvider } from '../todoContext';
 
 /* ---- bloque de actualizacion de localStorage en consola ---
 const defaultTodos = [
@@ -17,53 +18,54 @@ localStorage.removeItem('TODOS_V1')
 */
 
 function App() { 
-  // como se añadieron nuevos elementos y se cambió de array a objeto en la funcion local storage, 
-    //el item se debe recibir tal cual y se renombra la variable con los : por eso dice item : todos. si no lo cambiaramos tocaría renombrar todos los que digan todos a item
-  const {item : todos , saveItem : saveTodos , loading , error} = useLocalStorage('TODOS_V1' , [])
+  // todas las siguientes lineas son funciones que ahora se van a ejecutar desde el provider
+  // const {item : todos , saveItem : saveTodos , loading , error} = useLocalStorage('TODOS_V1' , [])
 
-  const [searchValue , setSearchValue] = React.useState('');
-  // console.log(`los usuarios buscan todos de ${searchValue}`);
+  // const [searchValue , setSearchValue] = React.useState('');
 
-  const completedTodos = todos.filter(todo => todo.completed);
-  const totalCompletedTodos = completedTodos.length;
-  const totalTodos = todos.length
+  // const completedTodos = todos.filter(todo => todo.completed);
+  // const totalCompletedTodos = completedTodos.length;
+  // const totalTodos = todos.length
 
-  const searchedTodos = todos.filter(
-    todo => todo.text.toLowerCase()
-      .includes(searchValue.toLowerCase())
-  )
+  // const searchedTodos = todos.filter(
+  //   todo => todo.text.toLowerCase()
+  //     .includes(searchValue.toLowerCase())
+  // )
 
-  const completeTodos = (text) => {
-    const newTodos = [...todos];
-    const todoIndex = newTodos.findIndex(
-      todo => todo.text === text
-    );
-    newTodos[todoIndex].completed = true;
-    saveTodos(newTodos)
-  };
+  // const completeTodos = (text) => {
+  //   const newTodos = [...todos];
+  //   const todoIndex = newTodos.findIndex(
+  //     todo => todo.text === text
+  //   );
+  //   newTodos[todoIndex].completed = true;
+  //   saveTodos(newTodos)
+  // };
 
-  const deleteTodos = (text) => {
-    const newTodos = [...todos];
-    const todoIndex = newTodos.findIndex(
-      todo => todo.text = text
-    );
-    newTodos.splice(todoIndex , 1)
-    saveTodos(newTodos)
-  };
+  // const deleteTodos = (text) => {
+  //   const newTodos = [...todos];
+  //   const todoIndex = newTodos.findIndex(
+  //     todo => todo.text = text
+  //   );
+  //   newTodos.splice(todoIndex , 1)
+  //   saveTodos(newTodos)
+  // };
 
   return (
-    <AppUi 
-    //se evia load y error para que la aplicacion pueda acceder a estos estados.
-    loading = {loading}
-    error = {error}
-    totalCompletedTodos={totalCompletedTodos}
-    totalTodos={totalTodos}
-    searchValue={searchValue}
-    setSearchValue={setSearchValue}
-    completeTodos={completeTodos}
-    deleteTodos={deleteTodos}
-    searchedTodos={searchedTodos}
-    />    
+    <TodoProvider>
+      <AppUi 
+      // todas las siguientes lineas serán proveidas directamente desde el provider a los componentes
+      // loading = {loading}
+      // error = {error}
+      // totalCompletedTodos={totalCompletedTodos}
+      // totalTodos={totalTodos}
+      // searchValue={searchValue}
+      // setSearchValue={setSearchValue}
+      // completeTodos={completeTodos}
+      // deleteTodos={deleteTodos}
+      // searchedTodos={searchedTodos}
+      />    
+
+    </TodoProvider>
   );
 }
 

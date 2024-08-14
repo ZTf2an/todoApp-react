@@ -7,8 +7,6 @@ function useLocalStorage ( itemName , initialValue ) {
   
   
   React.useEffect(() =>{
-    // se necesitó poner el set Timeout para simular la espera del efecto. al parecer el efecto se dee usar con promesas para que no se cargue infinitamente.
-      //si no se le pone el setTimeout se queda renderisando infinitamente.
     setTimeout(() => {
       try {
         const localStorageItem = localStorage.getItem(itemName); 
@@ -25,10 +23,8 @@ function useLocalStorage ( itemName , initialValue ) {
         setLoading(false)
         setError(true);
       }
-      
     }, 2000);
   
-  //se debe poner el array vacio para qe no caiga en un bucle infinito
   },[ ]);
     
   
@@ -38,8 +34,6 @@ function useLocalStorage ( itemName , initialValue ) {
     
       setItem(newTodos);
     }
-    
-    //se retorna como objeto en vez de array por lo general, cuando son mas de 2 elementos.
     return {loading , error , item , saveItem}
   }
 
