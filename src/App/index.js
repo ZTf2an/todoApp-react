@@ -19,7 +19,7 @@ localStorage.removeItem('TODOS_V1')
 function App() { 
   // como se añadieron nuevos elementos y se cambió de array a objeto en la funcion local storage, 
     //el item se debe recibir tal cual y se renombra la variable con los : por eso dice item : todos. si no lo cambiaramos tocaría renombrar todos los que digan todos a item
-  const {item : todos , saveItem : saveTodos , load , error} = useLocalStorage('TODOS_V1' , [])
+  const {item : todos , saveItem : saveTodos , loading , error} = useLocalStorage('TODOS_V1' , [])
 
   const [searchValue , setSearchValue] = React.useState('');
   // console.log(`los usuarios buscan todos de ${searchValue}`);
@@ -54,7 +54,7 @@ function App() {
   return (
     <AppUi 
     //se evia load y error para que la aplicacion pueda acceder a estos estados.
-    load = {load}
+    loading = {loading}
     error = {error}
     totalCompletedTodos={totalCompletedTodos}
     totalTodos={totalTodos}

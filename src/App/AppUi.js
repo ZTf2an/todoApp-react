@@ -7,7 +7,7 @@ import { CreateTodoButton } from '../createTodoButton';
 
 function AppUi ({
   //se debe recibir los props load y error para ser usados en la UI
-    load,
+    loading,
     error,
     totalCompletedTodos,
     totalTodos,
@@ -23,9 +23,9 @@ function AppUi ({
 
       <TodoList>
         {/* la idea es que  en las siguientes 3 lineas se valide si hay errores, si está cargando, si no hay todos. y el p de cada evento*/}
-        {load && <p>Se están cargando los datos</p>}
+        {loading && <p>Se están cargando los datos</p>}
         {error && <p>Rayos!! ha habido un error.</p>}
-        {(!load && searchedTodos.length === 0) && <p>Crea un nuevo Todo</p>}
+        {(!loading && searchedTodos.length === 0) && <p>Crea un nuevo Todo</p>}
 
         {searchedTodos.map( todo => (
           <TodoItem 
