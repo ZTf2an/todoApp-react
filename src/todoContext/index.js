@@ -2,11 +2,6 @@ import React from "react";
 import { useLocalStorage } from "../App/useLocalStorage";
 const TodoContext = React.createContext();
 
-/* Esta es la manera para crear providers, pero es mejor hacerlo de la siguiente forma como un provider personalizado.
-<TodoContext.Provider></TodoContext.Provider>
-<TodoContext.Consumer></TodoContext.Consumer>
-*/
-
 function TodoProvider ({children}) {
     const {item : todos , saveItem : saveTodos , loading , error} = useLocalStorage('TODOS_V1' , [])
 

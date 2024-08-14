@@ -1,6 +1,7 @@
 import './todoitem.css'
 import { FaCircleXmark } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa6";
+
 function TodoItem ({text , completed , onComplete , onDelete}) {
     return (
       <li className="TodoItem">
