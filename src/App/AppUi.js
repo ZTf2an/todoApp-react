@@ -6,15 +6,16 @@ import { TodoItem } from '../todoItem';
 import { CreateTodoButton } from '../createTodoButton';
 import { TodosLoading } from '../todosLading';
 import { TodoContext } from '../todoContext';
+import { Modal } from '../todoItem/Modal';
 
 function AppUi () {
-  //extraeremos el context global
   const {
     loading,
     error , 
     searchedTodos,
     completeTodos,
-    deleteTodos
+    deleteTodos,
+    openModal
   } = React.useContext(TodoContext);
     return (<div className="App">
       <TodoCounter />
@@ -34,10 +35,16 @@ function AppUi () {
           />
         ))}
       </TodoList>
-        
-      
 
       <CreateTodoButton />
+
+      {openModal && (
+        <Modal>
+          funcionalidad de crear TODOs
+        </Modal>
+
+      )}
+
     </div>)
 }
 
