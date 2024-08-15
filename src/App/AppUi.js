@@ -6,7 +6,9 @@ import { TodoItem } from '../todoItem';
 import { CreateTodoButton } from '../createTodoButton';
 import { TodosLoading } from '../todosLading';
 import { TodoContext } from '../todoContext';
-import { Modal } from '../todoItem/Modal';
+import { Modal } from '../Modal';
+import { TodoModal } from '../todoModal'
+
 
 function AppUi () {
   const {
@@ -40,7 +42,7 @@ function AppUi () {
 
       {openModal && (
         <Modal>
-          funcionalidad de crear TODOs
+          <TodoModal></TodoModal>
         </Modal>
 
       )}

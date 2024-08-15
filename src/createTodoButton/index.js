@@ -1,18 +1,14 @@
+import React from 'react'
 import './createTodoButton.css'
-function CreateTodoButton () {
+import { TodoContext } from '../todoContext'
+
+function CreateTodoButton ({toggleModal}) {
+  const {setOpenModal} = React.useContext(TodoContext)
     return (
-        
       <button 
         className='createTodoButton'
         //los eventos se escriben en camelcase 
-        onClick={(event) => {
-            console.log('le diste click')
-            // nos devuelve el texto
-            console.log(event)
-            //nos devuelve el evento y todas las propiedades del evento
-            console.log(event.target)
-            //nos devuelve el elemento html desde donde se ejecutó, en este caso <button class="CreateTodoButton"></button>
-        }}
+        onClick={()=> {setOpenModal(true)}}
         >
         +
       </button>
