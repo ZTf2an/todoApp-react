@@ -35,6 +35,16 @@ function TodoProvider ({children}) {
       saveTodos(newTodos)
     };
 
+    const addNewTodo = (text) => {
+      const newTodos = [...todos];
+       newTodos.push({
+        text,
+        completed: false,
+
+       })
+      saveTodos(newTodos)
+    }
+
     return (
         <TodoContext.Provider
             value={{
@@ -48,7 +58,8 @@ function TodoProvider ({children}) {
                 deleteTodos,
                 searchedTodos,
                 openModal,
-                setOpenModal
+                setOpenModal,
+                addNewTodo
             }}
         >
             {children}
